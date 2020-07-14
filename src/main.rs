@@ -294,7 +294,7 @@ pub fn parse(l: &str) -> Result<Vec<usize>, MyError> {
                 'd' => 13,
                 'e' => 14,
                 'f' => 15,
-                _ => panic!("Something went wrong (abnormal state)")
+                _ => panic!("Something went wrong (abnormal state)"),
             };
             if between {
                 ret.push(msb * 16 + digit);
@@ -307,8 +307,7 @@ pub fn parse(l: &str) -> Result<Vec<usize>, MyError> {
             return Err(MyError::InvalidCharacter);
         }
     }
-    if between
-    {
+    if between {
         Err(MyError::DanglingHalfByte)
     } else {
         Ok(ret)
@@ -337,7 +336,9 @@ pub fn convert_and_display(l: &str) {
             let words = convert(&bytes);
             print!("{}:", l);
             for (i, w) in words.iter().enumerate() {
-                if i % 4 == 0 { print!("\n\t") }
+                if i % 4 == 0 {
+                    print!("\n\t")
+                }
                 print!("{} ", w);
             }
             println!("");
@@ -373,8 +374,8 @@ fn main() {
     } else {
         // Work with stdin
         loop {
-            let mut buf: String = String::new();
-            if 0 == io::stdin().read_line(&mut buf).unwrap() {
+            let mut line: String = String::new();
+            if 0 == io::stdin().read_line(&mut line).unwrap() {
                 process::exit(0);
             }
             convert_and_display(&line);
