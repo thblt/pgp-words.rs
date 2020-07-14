@@ -344,9 +344,25 @@ pub fn convert_and_display(l: &str) {
         }
         Err(e) => {
             println!("Error: {}", e);
+            usage();
             process::exit(1);
         }
     }
+}
+
+pub fn usage() {
+    println!(
+        r#"
+Usage:
+pgp-words [fingerprint...]
+
+If called with multiple arguments, they will be concatenated
+and treated as a single fingerprint.
+
+If called with no arguments, input is read from stdin,
+and each line is treated as a single fingerprint.  In this
+mode, invalid values are silently ignored."#
+    );
 }
 
 fn main() {
