@@ -377,6 +377,7 @@ fn main() {
             if 0 == io::stdin().read_line(&mut buf).unwrap() {
                 process::exit(0);
             }
+            convert_and_display(&line);
         }
     }
 }
