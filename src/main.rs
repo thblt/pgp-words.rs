@@ -3,7 +3,7 @@ use std::env;
 use std::io;
 use std::process;
 
-static WORDS: &'static [(&'static str, &'static str)] = &[
+const WORDS: &'static [(&'static str, &'static str)] = &[
     ("aardvark", "adroitness"),
     ("absurd", "adviser"),
     ("accrue", "aftermath"),
