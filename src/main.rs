@@ -316,11 +316,11 @@ pub fn parse(l: &str) -> Result<Vec<usize>, MyError> {
 }
 
 /// Convert a hex string parsed by `parse()` to words.
-pub fn convert (bytes: &Vec<usize>) -> Vec<&str> {
-    let mut ret : Vec<&str> = vec!();
+pub fn convert(bytes: &Vec<usize>) -> Vec<&'static str> {
+    let mut ret: Vec<&str> = vec![];
     let mut odd = true;
     for b in bytes {
-        ret.push(if odd { WORDS[*b].0 } else { WORDS[*b].1 } );
+        ret.push(if odd { WORDS[*b].0 } else { WORDS[*b].1 });
         odd = !odd;
     }
     ret
