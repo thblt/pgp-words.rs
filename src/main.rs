@@ -277,6 +277,8 @@ const WORDS: &'static [(&'static str, &'static str)] = &[
 
 #[derive(Debug, Error)]
 pub enum MyError {
+    #[error(display = "Empty input.")]
+    EmptyInput,
     #[error(display = "Illegal character in input.")]
     InvalidCharacter,
     #[error(display = "Hex sequence length isn't a multiple of two.")]
@@ -286,6 +288,7 @@ pub enum MyError {
 /// Parse an hex string as a Vec of usize, removing all whitespace.
 pub fn parse(l: &str) -> Result<Vec<usize>, MyError> {
     let mut ret: Vec<usize> = vec![];
+    let mut empty = true;
     let mut between: bool = false;
     let mut msb: usize = 0;
     for c in l.to_lowercase().chars() {
@@ -312,6 +315,7 @@ pub fn parse(l: &str) -> Result<Vec<usize>, MyError> {
             if between {
                 ret.push(msb * 16 + digit);
                 between = false;
+                empty = false;
             } else {
                 msb = digit;
                 between = true;
@@ -322,6 +326,8 @@ pub fn parse(l: &str) -> Result<Vec<usize>, MyError> {
     }
     if between {
         Err(MyError::DanglingHalfByte)
+    } else if empty {
+        Err(MyError::EmptyInput)
     } else {
         Ok(ret)
     }
@@ -356,6 +362,7 @@ pub fn convert_and_display(l: &str, ignore_errors: bool) {
             }
             println!("");
         }
+
         Err(e) => {
             if !ignore_errors {
                 println!("Error: {}", e);
