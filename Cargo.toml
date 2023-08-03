@@ -1,6 +1,6 @@
 [package]
 name = "pgp-words"
-version = "0.2.0"
+version = "0.2.1"
 authors = ["Thibault Polge <thibault@thb.lt>"]
 edition = "2018"
 
