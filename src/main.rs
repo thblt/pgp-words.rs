@@ -14,7 +14,10 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-use err_derive::Error; use std::env; use std::io; use std::process;
+use err_derive::Error;
+use std::env;
+use std::io;
+use std::process;
 
 const WORDS: &'static [(&'static str, &'static str)] = &[
     ("aardvark", "adroitness"),
