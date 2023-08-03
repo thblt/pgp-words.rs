@@ -376,6 +376,8 @@ pub fn convert_and_display(l: &str, ignore_errors: bool) {
 pub fn usage() {
     println!(
         r#"
+pgp-words {}
+
 Usage:
 pgp-words [fingerprint...]
 
@@ -384,7 +386,7 @@ and treated as a single fingerprint.
 
 If called with no arguments, input is read from stdin,
 and each line is treated as a single fingerprint.  In this
-mode, invalid values are silently ignored."#
+mode, invalid values are silently ignored."#, env!("CARGO_PKG_VERSION")
     );
 }
 
