@@ -394,7 +394,7 @@ fn main() {
             if 0 == io::stdin().read_line(&mut line).unwrap() {
                 process::exit(0);
             }
-            convert_and_display(&line, true);
+            convert_and_display(&line.trim(), true);
         }
     }
 }
