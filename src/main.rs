@@ -341,7 +341,7 @@ pub fn convert(bytes: &Vec<usize>) -> Vec<&'static str> {
 
 /// For interactive use.  Convert an hex string to words, and display
 /// the result.
-pub fn convert_and_display(l: &str) {
+pub fn convert_and_display(l: &str, ignore_errors: bool) {
     let bytes = parse(&l);
 
     match bytes {
@@ -358,9 +358,11 @@ pub fn convert_and_display(l: &str) {
             println!("");
         }
         Err(e) => {
-            println!("Error: {}", e);
-            usage();
-            process::exit(1);
+            if !ignore_errors {
+                println!("Error: {}", e);
+                usage();
+                process::exit(1);
+            }
         }
     }
 }
@@ -384,7 +386,7 @@ fn main() {
     if env::args().len() > 1 {
         // Work with command line
         let line = env::args().skip(1).collect::<String>();
-        convert_and_display(&line);
+        convert_and_display(&line, false);
     } else {
         // Work with stdin
         loop {
@@ -392,7 +394,7 @@ fn main() {
             if 0 == io::stdin().read_line(&mut line).unwrap() {
                 process::exit(0);
             }
-            convert_and_display(&line);
+            convert_and_display(&line, true);
         }
     }
 }
