@@ -1,5 +1,5 @@
 // This file is part of pgp-words.
-// Copyright (c) 2020 Thibault Polge <thibault@thb.lt>.
+// Copyright (c) 2020-2023 Thibault Polge <thibault@thb.lt>.
 //
 // pgp-words is free software; you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
