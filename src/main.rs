@@ -1,4 +1,3 @@
-//                                      Hey, EMACS: -*- nroff -*-
 // This file is part of pgp-words.
 // Copyright (c) 2020 Thibault Polge <thibault@thb.lt>.
 //
