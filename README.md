@@ -16,9 +16,8 @@ even number, *onlooker* if it is odd.
 
 # Usage
 
-`pgp-words` reads a fingerprint or any other hexadecimal sequence,
-either from the command line or the standard input, and converts it
-into words:
+The most basic usage is to just call `pgp-words` with the fingerprint
+you want converted into words:
 
 ```
 $ pgp-words d1c2 25e4 26c6 33dd 94d1  a7e8 c3f4 08aa 9b34 2488
@@ -29,8 +28,13 @@ d1c2 25e4 26c6 33dd 94d1 a7e8 c3f4 08aa 9b34 2488:
 	Pluto scavenger repay typewriter
 	snowcap Virginia aimless pedigree
 	puppy confidence bluebird maritime
+```
 
-gpg --fingerprint 0x33CDE511  | pgp-words
+It can also read from stdin, ignoring lines that aren't an hex string
+(with `-s`)
+
+```
+gpg --fingerprint 0x33CDE511  | pgp-words -s
 
 EA5B 81C5 6498 8C73 EE90  DEE9 BAF1 E072 33CD E511:
         Trojan exodus minnow resistor
@@ -40,6 +44,14 @@ EA5B 81C5 6498 8C73 EE90  DEE9 BAF1 E072 33CD E511:
         chisel sandalwood topmost Babylon
 ```
 
- - When called with command-line arguments, it concatenates them and treats them as a single value.
- - When called from stdin, it treats each lins as a single value and silently ignores invalid lines.
- - For simplicity, spaces, tabs and newlines are ignored.
+It can also echo its input unmodified, annotating valid hex strings with words:
+
+```
+gpg --fingerprint 0x33CDE511  | pgp-words --passthrough --no-echo -s -p"  >>> " -w
+
+pub   rsa4096 2017-05-04 [SC] [revoked: 2017-05-23]
+      EA5B 81C5 6498 8C73 EE90  DEE9 BAF1 E072 33CD E511
+  >>> Trojan exodus minnow resistor flytrap narrative offload hurricane tycoon millionaire
+  >>> tactics ultimate shadow vacancy tapeworm holiness chisel sandalwood topmost Babylon
+uid           [ revoked] Thibault Polge <thibault@thb.lt>
+```

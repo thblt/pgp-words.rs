@@ -38,12 +38,35 @@ are selected depending on the parity of the byte position. For
 example, `0x9e` is `quiver` if the byte position in the sequence is an
 even number, `onlooker` if it is odd.
 
+.SH OPTIONS
+
+.TP
+.B \-\-no-echo
+Don't echo back the input string on stdout.
+
+.TP
+\-\-passthrough
+Echo back all input strings on stdout.
+
+.TP
+.B -w, \-\-words-per-line NUMBER
+Number of words to output before emitting a line-break.  Default is 4.
+
+.TP
+.B -s, \-\-silent-errors
+Silently ignore invalid inputs.  This is especially useful in
+combination with --passthrough.
+
+.TP
+.B -p, \-\-prefix
+Prefix to display before each line of words.
+
 .SH REFERENCE
 .TP
 \fIhttps://en.wikipedia.org/wiki/PGP_word_list\fR
 
 .SH COPYRIGHT
-Copyright \(co 2020 Thibault Polge <thibault@thb.lt>.
+Copyright \(co 2020-2023 Thibault Polge <thibault@thb.lt>.
 
 License GPLv3+ (<http://gnu.org/licenses/gpl.html>)
 
