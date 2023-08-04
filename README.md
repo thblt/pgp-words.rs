@@ -3,16 +3,17 @@
 `pgp-words.rs` is a Rust implementation of the [PGP Word
 List](https://en.wikipedia.org/wiki/PGP_word_list).  The word list was
 designed to make it easy to convey sequences of bytes using only
-voice, and is particularly suited for transmitting key fingerprints
-and other similar sequences over the phone. Even in the same physical
-place, it's easier to just read a bunch of words out loud than to
-spell a sequence of hex digits (was that 3 times `F` or `3F`?)
+voice, and is particularly suited for validating public key
+fingerprints and other similar sequences over the phone. Even in the
+same physical place, it's easier to just read a bunch of words out
+loud than to spell a sequence of hex digits (was that 3 times `F` or
+`3F`?)
 
-Each word represents exactly one byte.  To avoid errors, there are
-actually 512 words in the list (two per possible byte value) and words
-are selected depending on the parity of the byte position.  For
-example, `0x9e` is *quiver* if the byte position in the sequence is an
-even number, *onlooker* if it is odd.
+Each word represents exactly one possible byte value.  To avoid
+errors, there are actually 512 words in the list (two per possible
+byte value) and words are selected depending on the parity of the byte
+position.  For example, `0x9e` is *quiver* if the byte position in the
+sequence is an even number, *onlooker* if it is odd.
 
 # Usage
 
