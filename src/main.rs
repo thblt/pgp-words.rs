@@ -78,9 +78,9 @@ fn convert_and_display(l: &str, args: &Invocation) {
             return
         }
 
-        if let Some(lines) = args.hex.clone() {
+        if let Some(hex) = args.hex.clone()  {
             // Work with command line
-            let line = lines.into_iter().collect::<String>();
+            let line = hex.join(" ");
             convert_and_display(&line, &args);
         } else {
             // Work with stdin
